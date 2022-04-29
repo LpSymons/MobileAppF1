@@ -7,12 +7,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -24,9 +22,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class HomeActivity extends AppCompatActivity {
+public class MediaActivity extends AppCompatActivity {
 
-    ListView lvRss;
+    ListView lv2Rss;
     ArrayList<String> titles;
     ArrayList<String> links;
 
@@ -37,12 +35,12 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home_activty);
 
 
-        lvRss = (ListView) findViewById(R.id.lvRss);
+        lv2Rss = (ListView) findViewById(R.id.lvRss);
 
         titles = new ArrayList<String>();
         links = new ArrayList<String>();
 
-        lvRss.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv2Rss.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -59,12 +57,12 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-        lvRss = (ListView) findViewById(R.id.lvRss);
+        lv2Rss = (ListView) findViewById(R.id.lvRss);
 
         titles = new ArrayList<String>();
         links = new ArrayList<String>();
 
-        lvRss.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv2Rss.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -92,7 +90,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public class ProcessInBackground extends AsyncTask<Integer, Void, Exception>
     {
-        ProgressDialog progressDialog = new ProgressDialog(HomeActivity.this);
+        ProgressDialog progressDialog = new ProgressDialog(MediaActivity.this);
 
         Exception exception = null;
 
@@ -109,7 +107,7 @@ public class HomeActivity extends AppCompatActivity {
 
             try
             {
-                URL url = new URL("https://www.autosport.com/rss/f1/news/");
+                URL url = new URL("https://www.fia.com/rss/press-release");
 
                 XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 
@@ -175,9 +173,9 @@ public class HomeActivity extends AppCompatActivity {
         protected  void onPostExecute(Exception s){
             super.onPostExecute(s);
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, titles);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(MediaActivity.this, android.R.layout.simple_list_item_1, titles);
 
-            lvRss.setAdapter(adapter);
+            lv2Rss.setAdapter(adapter);
 
             progressDialog.dismiss();
 
@@ -185,4 +183,3 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 }
-

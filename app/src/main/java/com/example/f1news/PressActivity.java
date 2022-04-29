@@ -24,9 +24,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class HomeActivity extends AppCompatActivity {
+public class PressActivity extends AppCompatActivity {
 
-    ListView lvRss;
+    ListView lv3Rss;
     ArrayList<String> titles;
     ArrayList<String> links;
 
@@ -37,12 +37,12 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home_activty);
 
 
-        lvRss = (ListView) findViewById(R.id.lvRss);
+        lv3Rss = (ListView) findViewById(R.id.lvRss);
 
         titles = new ArrayList<String>();
         links = new ArrayList<String>();
 
-        lvRss.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv3Rss.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -59,12 +59,12 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-        lvRss = (ListView) findViewById(R.id.lvRss);
+        lv3Rss = (ListView) findViewById(R.id.lvRss);
 
         titles = new ArrayList<String>();
         links = new ArrayList<String>();
 
-        lvRss.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv3Rss.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -92,7 +92,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public class ProcessInBackground extends AsyncTask<Integer, Void, Exception>
     {
-        ProgressDialog progressDialog = new ProgressDialog(HomeActivity.this);
+        ProgressDialog progressDialog = new ProgressDialog(PressActivity.this);
 
         Exception exception = null;
 
@@ -109,7 +109,7 @@ public class HomeActivity extends AppCompatActivity {
 
             try
             {
-                URL url = new URL("https://www.autosport.com/rss/f1/news/");
+                URL url = new URL("https://www.autosport.com/rss/formula-e/news/");
 
                 XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 
@@ -175,9 +175,9 @@ public class HomeActivity extends AppCompatActivity {
         protected  void onPostExecute(Exception s){
             super.onPostExecute(s);
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, titles);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(PressActivity.this, android.R.layout.simple_list_item_1, titles);
 
-            lvRss.setAdapter(adapter);
+            lv3Rss.setAdapter(adapter);
 
             progressDialog.dismiss();
 
@@ -185,4 +185,3 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 }
-
